@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Uma lista simples para organizar suas tarefas do dia."
+    />
+    <title>Minhas tarefas</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <script src="assets/script.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <div class="header-top">
+          <p class="eyebrow">Organize seu dia</p>
+          <div class="header-actions">
+            <button
+              class="icon-button search-open-button"
+              id="open-search"
+              type="button"
+              aria-label="Buscar tarefas"
+              aria-haspopup="dialog"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 4.5 4.5"></path>
+              </svg>
+            </button>
+            <button
+              class="icon-button notifications-open-button"
+              id="open-notifications"
+              type="button"
+              aria-label="Abrir notificações"
+              aria-haspopup="dialog"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                <path d="M10 21h4"></path>
+              </svg>
+              <span class="notification-badge" id="notification-badge" hidden></span>
+            </button>
+            <div class="settings-control">
+              <button
+                class="icon-button settings-toggle"
+                id="toggle-settings"
+                type="button"
+                aria-label="Abrir configurações"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="settings-menu"
+              >
+                <svg viewBox="0 0 256 256" aria-hidden="true">
+                  <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"></path>
+                </svg>
+              </button>
+              <div class="settings-menu" id="settings-menu" role="group" aria-label="Configurações" hidden>
+                <button class="settings-menu-item" type="button" data-settings-action="themes">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3a9 9 0 1 0 0 18h1.2a2.3 2.3 0 0 0 1.6-3.9 1.7 1.7 0 0 1 1.2-2.9H18a3 3 0 0 0 3-3c0-4.5-4-8.2-9-8.2Z"></path>
+                    <circle cx="7.5" cy="11" r="1"></circle>
+                    <circle cx="10" cy="7" r="1"></circle>
+                    <circle cx="15" cy="8" r="1"></circle>
+                  </svg>
+                  <span>Mudar tema</span>
+                </button>
+                <button class="settings-menu-item" type="button" data-settings-action="statistics">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 20h16"></path>
+                    <path d="M7 16v-5"></path>
+                    <path d="M12 16V5"></path>
+                    <path d="M17 16V9"></path>
+                  </svg>
+                  <span>Gráfico de conclusão</span>
+                </button>
+                <button class="settings-menu-item" type="button" data-settings-action="information">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 11v5"></path>
+                    <path d="M12 8h.01"></path>
+                  </svg>
+                  <span>Informações</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h1>Minhas tarefas</h1>
+        <p class="subtitle">Um passo de cada vez.</p>
+      </header>
+
+      <form class="card task-form" id="task-form">
+        <label for="task-input">O que você precisa fazer?</label>
+        <div class="form-row">
+          <input
+            id="task-input"
+            name="task"
+            type="text"
+            placeholder="Ex.: Ler um capítulo"
+            autocomplete="off"
+            required
+          />
+          <button class="button button-primary" type="submit">Adicionar</button>
+        </div>
+      </form>
+
+      <section class="card task-section" aria-labelledby="task-list-heading">
+        <div class="section-heading">
+          <h2 id="task-list-heading">Sua lista</h2>
+          <div
+            class="search-order-status is-inactive"
+            id="search-order-status"
+            role="note"
+            tabindex="0"
+            aria-describedby="search-order-tooltip"
+          >
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 13V3M4 7l4-4 4 4"></path>
+            </svg>
+            <span id="search-order-label">Ordem de busca inativa</span>
+            <span class="search-order-tooltip" id="search-order-tooltip" role="tooltip">
+              Use a lupa para pesquisar pelo nome da tarefa e selecione um resultado para
+              trazê-la ao topo. Use “Limpar ordem de busca” para voltar à ordem original.
+            </span>
+          </div>
+        </div>
+        <div class="task-toolbar">
+          <label class="filter-control" for="completed-filter">
+            <input id="completed-filter" type="checkbox" />
+            <span>Mostrar tarefas concluídas</span>
+          </label>
+          <button
+            class="search-clear-button"
+            id="clear-search"
+            type="button"
+            aria-label="Limpar ordem de busca"
+            title="Limpar ordem de busca"
+          >
+            Limpar ordem de busca.
+          </button>
+        </div>
+        <p class="empty-message" id="empty-message">
+          Nenhuma tarefa por aqui. Adicione a primeira!
+        </p>
+        <ul class="task-list" id="task-list" aria-live="polite"></ul>
+        <nav class="task-pagination" id="task-pagination" aria-label="Paginação da lista de tarefas" hidden>
+          <button class="pagination-button" id="previous-task-page" type="button">Anterior</button>
+          <span id="task-pagination-status" aria-live="polite"></span>
+          <button class="pagination-button" id="next-task-page" type="button">Próxima</button>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="current-year"></span> Bruno-Kirashy. Desenvolvido com expertise em inteligência artificial aplicada.</p>
+      <p class="site-footer-model">Desenvolvimento assistido por IA com Copilot Fusion.</p>
+      <nav class="social-links" aria-label="Redes sociais">
+        <a
+          href="https://github.com/bruno-kirashy"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub de Bruno-Kirashy"
+          title="GitHub"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 .9a11.1 11.1 0 0 0-3.5 21.63c.55.1.76-.24.76-.53v-2.03c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 .1.43 2.4 3.42 1.82.1-.72.4-1.21.72-1.49-2.47-.28-5.06-1.24-5.06-5.5 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.27-2.6 5.22-5.08 5.49.4.35.76 1.02.76 2.06V22c0 .29.2.63.77.52A11.1 11.1 0 0 0 12 .9Z"></path>
+          </svg>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/bruno-santos-silva-8091b6378"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn de Bruno Santos Silva"
+          title="LinkedIn"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.45 2H3.55C2.69 2 2 2.67 2 3.5v17c0 .83.69 1.5 1.55 1.5h16.9c.86 0 1.55-.67 1.55-1.5v-17c0-.83-.69-1.5-1.55-1.5ZM7.93 18.74H4.96V9.19h2.97v9.55ZM6.45 7.89a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12.3 10.85h-2.96V14.1c0-1.11-.02-2.54-1.55-2.54-1.56 0-1.8 1.21-1.8 2.46v4.72H9.48V9.19h2.84v1.3h.04c.4-.75 1.36-1.54 2.8-1.54 3 0 3.59 1.98 3.59 4.55v5.24Z"></path>
+          </svg>
+        </a>
+      </nav>
+    </footer>
+
+    <dialog class="search-modal" id="search-modal" aria-labelledby="search-title">
+      <div class="search-panel">
+        <div class="search-modal-header">
+          <div>
+            <p class="eyebrow">Encontre rapidamente</p>
+            <h2 id="search-title">Buscar tarefas</h2>
+          </div>
+          <button
+            class="icon-button modal-close-button"
+            id="close-search"
+            type="button"
+            aria-label="Fechar busca"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="search-form" id="search-form" role="search">
+          <label class="visually-hidden" for="search-input">Buscar tarefa</label>
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Digite o nome de uma tarefa..."
+            autocomplete="off"
+          />
+          <button class="button button-primary search-submit-button" type="submit" aria-label="Buscar">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.8"></circle>
+              <path d="m16 16 4.5 4.5"></path>
+            </svg>
+          </button>
+        </form>
+        <p class="search-hint">Os resultados são atualizados enquanto você digita.</p>
+        <p class="search-empty-message" id="search-empty-message" role="status" hidden>
+          Nenhuma tarefa encontrada.
+        </p>
+        <ul class="search-results" id="search-results" aria-label="Resultados da busca" hidden></ul>
+      </div>
+    </dialog>
+
+    <dialog
+      class="search-modal statistics-modal"
+      id="statistics-modal"
+      aria-labelledby="statistics-title"
+    >
+      <div class="search-panel statistics-panel">
+        <div class="search-modal-header">
+          <div>
+            <p class="eyebrow">Seu progresso</p>
+            <h2 id="statistics-title">Tarefas concluídas</h2>
+          </div>
+          <button
+            class="icon-button modal-close-button"
+            id="close-statistics"
+            type="button"
+            aria-label="Fechar estatísticas"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="statistics-summary">
+          <div class="completion-chart-group">
+            <div class="completion-chart" id="completion-chart" role="img">
+              <span class="completion-chart-value" id="completion-percentage">0%</span>
+              <span class="completion-chart-label" id="completion-chart-label">
+                concluídas
+              </span>
+            </div>
+            <span
+              class="completion-mood is-positive"
+              id="completion-mood"
+              aria-hidden="true"
+            >☺</span>
+          </div>
+          <p class="statistics-count" id="statistics-count" aria-live="polite"></p>
+        </div>
+        <section class="completed-section" aria-labelledby="completed-heading">
+          <div class="statistics-task-toolbar">
+            <h3 id="completed-heading">Tarefas concluídas</h3>
+            <label class="statistics-task-filter" for="statistics-task-status">
+              <span class="visually-hidden">Escolher tarefas para exibir</span>
+              <select id="statistics-task-status">
+                <option value="completed">Concluídas</option>
+                <option value="pending">Não concluídas</option>
+              </select>
+            </label>
+          </div>
+          <p class="completed-empty-message" id="completed-empty-message" hidden>
+            Ainda não há tarefas concluídas.
+          </p>
+          <ul class="completed-task-list" id="completed-task-list"></ul>
+          <nav class="completed-pagination" id="completed-pagination" aria-label="Paginação das tarefas concluídas" hidden>
+            <button class="pagination-button" id="previous-page" type="button">Anterior</button>
+            <span id="pagination-status" aria-live="polite"></span>
+            <button class="pagination-button" id="next-page" type="button">Próxima</button>
+          </nav>
+        </section>
+      </div>
+    </dialog>
+
+    <dialog
+      class="search-modal notifications-modal"
+      id="notifications-modal"
+      aria-labelledby="notifications-title"
+    >
+      <div class="search-panel notifications-panel">
+        <div class="search-modal-header">
+          <div>
+            <p class="eyebrow">Suas conquistas</p>
+            <h2 id="notifications-title">Notificações</h2>
+          </div>
+          <button
+            class="icon-button modal-close-button"
+            id="close-notifications"
+            type="button"
+            aria-label="Fechar notificações"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="notification-filter">
+          <label for="notification-category-filter">Filtrar notificações</label>
+          <select id="notification-category-filter">
+            <option value="all">Todas</option>
+            <option value="achievement">Conquistas</option>
+            <option value="task-completed">Tarefas concluídas</option>
+            <option value="task-deleted">Tarefas excluídas</option>
+          </select>
+        </div>
+        <p class="notifications-empty-message" id="notifications-empty-message">
+          Suas celebrações e conquistas aparecerão aqui.
+        </p>
+        <ol class="notification-list" id="notification-list" aria-live="polite"></ol>
+      </div>
+    </dialog>
+
+    <dialog class="search-modal themes-modal" id="themes-modal" aria-labelledby="themes-title">
+      <div class="search-panel themes-panel">
+        <div class="search-modal-header">
+          <div>
+            <p class="eyebrow">Personalize seu espaço</p>
+            <h2 id="themes-title">Temas de cores</h2>
+          </div>
+          <button
+            class="icon-button modal-close-button"
+            id="close-themes"
+            type="button"
+            aria-label="Fechar temas"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <p class="themes-description">
+          Escolha uma paleta para personalizar os detalhes da sua lista.
+        </p>
+        <div class="theme-options" id="theme-options" aria-label="Opções de tema"></div>
+        <p class="premium-note">
+          As paletas premium estão disponíveis como prévia e poderão ter acesso exclusivo
+          futuramente.
+        </p>
+      </div>
+    </dialog>
+
+    <div
+      class="information-modal"
+      id="information-modal"
+      role="region"
+      aria-label="Informações e guia de uso do site"
+      hidden
+    >
+      <div class="information-page">
+        <header class="information-header">
+          <div class="information-heading">
+            <p class="eyebrow">Central de ajuda</p>
+            <h2 id="information-title">Organize seu dia, um passo de cada vez</h2>
+            <p class="information-intro">
+              Este espaço foi criado para ajudar você a organizar tarefas, acompanhar seu
+              progresso e valorizar cada conquista do cotidiano.
+            </p>
+          </div>
+          <button
+            class="icon-button modal-close-button"
+            id="close-information"
+            type="button"
+            aria-label="Fechar informações"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </header>
+
+        <main class="information-content">
+          <section class="information-group" aria-labelledby="information-shortcuts-title">
+            <div class="information-section-heading">
+              <p class="eyebrow">Atalhos interativos</p>
+              <h3 id="information-shortcuts-title">Experimente os recursos</h3>
+            </div>
+            <div class="information-shortcuts">
+              <button class="information-shortcut" type="button" data-info-action="search">
+                <span class="information-shortcut-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                    <path d="m16 16 4.5 4.5"></path>
+                  </svg>
+                </span>
+                <span>
+                  <strong>Buscar tarefas</strong>
+                  <span>Encontre tarefas pelo início do nome.</span>
+                </span>
+              </button>
+              <button class="information-shortcut" type="button" data-info-action="notifications">
+                <span class="information-shortcut-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                    <path d="M10 21h4"></path>
+                  </svg>
+                </span>
+                <span>
+                  <strong>Notificações</strong>
+                  <span>Revise conclusões, exclusões e conquistas.</span>
+                </span>
+              </button>
+              <button class="information-shortcut" type="button" data-info-action="statistics">
+                <span class="information-shortcut-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 20h16"></path>
+                    <path d="M7 16v-5"></path>
+                    <path d="M12 16V5"></path>
+                    <path d="M17 16V9"></path>
+                  </svg>
+                </span>
+                <span>
+                  <strong>Gráfico de conclusão</strong>
+                  <span>Veja percentuais e alterne entre tarefas concluídas e pendentes.</span>
+                </span>
+              </button>
+              <button class="information-shortcut" type="button" data-info-action="themes">
+                <span class="information-shortcut-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3a9 9 0 1 0 0 18h1.2a2.3 2.3 0 0 0 1.6-3.9 1.7 1.7 0 0 1 1.2-2.9H18a3 3 0 0 0 3-3c0-4.5-4-8.2-9-8.2Z"></path>
+                    <circle cx="7.5" cy="11" r="1"></circle>
+                    <circle cx="10" cy="7" r="1"></circle>
+                    <circle cx="15" cy="8" r="1"></circle>
+                  </svg>
+                </span>
+                <span>
+                  <strong>Mudar tema</strong>
+                  <span>Personalize as cores da interface.</span>
+                </span>
+              </button>
+              <button class="information-shortcut" type="button" data-info-action="settings">
+                <span class="information-shortcut-icon">
+                  <svg viewBox="0 0 256 256" aria-hidden="true">
+                    <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"></path>
+                  </svg>
+                </span>
+                <span>
+                  <strong>Configurações</strong>
+                  <span>Abra os atalhos de tema, gráfico e informações.</span>
+                </span>
+              </button>
+              <button class="information-shortcut" type="button" data-info-action="add-task">
+                <span class="information-shortcut-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 5v14M5 12h14"></path>
+                  </svg>
+                </span>
+                <span>
+                  <strong>Adicionar tarefa</strong>
+                  <span>Comece sua lista pelo campo no topo da página.</span>
+                </span>
+              </button>
+            </div>
+          </section>
+
+          <section class="information-group" aria-labelledby="information-usage-title">
+            <div class="information-section-heading">
+              <p class="eyebrow">Como usar</p>
+              <h3 id="information-usage-title">Sua rotina, organizada</h3>
+            </div>
+            <div class="information-sections">
+              <article class="information-card">
+                <span class="information-step">01</span>
+                <div>
+                  <h4>Crie e conclua tarefas</h4>
+                  <p>Escreva uma tarefa no campo principal e clique em <strong>Adicionar</strong>.
+                    Marque a caixa ao lado dela quando terminar; tarefas concluídas ficam abaixo
+                    das pendentes.</p>
+                </div>
+              </article>
+              <article class="information-card">
+                <span class="information-step">02</span>
+                <div>
+                  <h4>Controle o que aparece</h4>
+                  Use <strong>Mostrar tarefas concluídas</strong> para exibi-las ou ocultá-las.
+                    O botão <strong>Limpar ordem de busca</strong> remove a prioridade aplicada
+                    ao selecionar um resultado. A lista mostra a data de criação e divide mais
+                    de dez tarefas em páginas.</p>
+                </div>
+              </article>
+              <article class="information-card">
+                <span class="information-step">03</span>
+                <div>
+                  <h4>Acompanhe suas conquistas</h4>
+                  <p>Concluir ou excluir tarefas gera notificações. A cada marco de progresso,
+                    uma conquista é registrada; o indicador mostra quantas notificações ainda
+                    não foram abertas.</p>
+                </div>
+              </article>
+              <article class="information-card">
+                <span class="information-step">04</span>
+                <div>
+                  <h4>Escolha suas cores</h4>
+                  <p>As paletas gratuitas e as identificadas como Premium são prévias visuais;
+                    a seleção de um tema atualiza os detalhes de cor do projeto.</p>
+                </div>
+              </article>
+            </div>
+          </section>
+          <p class="information-thanks">Obrigado por conhecer o projeto. Que ele ajude a deixar seu dia mais leve!</p>
+        </main>
+      </div>
+    </div>
+
+    <div
+      class="notification-toast"
+      id="notification-toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    >
+      <span class="notification-toast-icon" aria-hidden="true">✦</span>
+      <span class="notification-toast-content">
+        <strong class="notification-toast-title" id="notification-toast-title"></strong>
+        <span id="notification-toast-message"></span>
+      </span>
+    </div>
+  </body>
+</html>
