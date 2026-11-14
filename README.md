@@ -103,6 +103,6 @@ Bruno-Kirashy
 
 <div align="center">
 
-Feito com dedicação para deixar o dia a dia mais organizado e produtivo.
+Feito com dedicação para deixar o dia a dia mais organizado e produtivo!
 
 </div>
