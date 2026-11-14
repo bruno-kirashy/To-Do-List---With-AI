@@ -1,15 +1,15 @@
 :root {
   color-scheme: light;
-  --accent: #28613d;
-  --accent-dark: #1d4b2f;
-  --accent-text: #38664b;
-  --accent-soft: #edf4ef;
-  --accent-soft-strong: #f0f7f2;
-  --accent-border: #dce9df;
-  --accent-hover: #b7cdbd;
-  --accent-focus: #9cc9aa;
-  --scrollbar-thumb: #6b9b76;
-  --chart-track: #dfe9e1;
+  --accent: var(--theme-accent, #28613d);
+  --accent-dark: var(--theme-accent-dark, #1d4b2f);
+  --accent-text: var(--theme-accent-text, #38664b);
+  --accent-soft: var(--theme-accent-soft, #edf4ef);
+  --accent-soft-strong: var(--theme-accent-soft-strong, #f0f7f2);
+  --accent-border: var(--theme-accent-border, #dce9df);
+  --accent-hover: var(--theme-accent-hover, #b7cdbd);
+  --accent-focus: var(--theme-accent-focus, #9cc9aa);
+  --scrollbar-thumb: var(--theme-scrollbar-thumb, #6b9b76);
+  --chart-track: var(--theme-chart-track, #dfe9e1);
   scrollbar-color: var(--scrollbar-thumb) var(--accent-soft);
   scrollbar-width: thin;
   font-family: Arial, Helvetica, sans-serif;
@@ -141,6 +141,13 @@ input {
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.7;
+}
+
+.settings-mode-status {
+  margin-left: auto;
+  color: #68736c;
+  font-size: 0.72rem;
+  white-space: nowrap;
 }
 
 .eyebrow {
@@ -1509,6 +1516,245 @@ button:focus-visible,
 
 .social-links a:last-child svg {
   fill: none;
+}
+
+:root[data-color-mode="dark"] {
+  color-scheme: dark;
+  color: #e8efe9;
+  background: #000;
+  --accent-dark: color-mix(in srgb, var(--accent), white 12%);
+  --accent-text: color-mix(in srgb, var(--accent), white 48%);
+  --accent-soft: color-mix(in srgb, var(--accent) 16%, #151515);
+  --accent-soft-strong: color-mix(in srgb, var(--accent) 21%, #1b1b1b);
+  --accent-border: color-mix(in srgb, var(--accent) 40%, #333);
+  --accent-hover: color-mix(in srgb, var(--accent), white 38%);
+  --accent-focus: color-mix(in srgb, var(--accent), white 58%);
+  --scrollbar-thumb: color-mix(in srgb, var(--accent), white 25%);
+  --chart-track: #303030;
+  --dark-page: #000;
+  --dark-surface: #121212;
+  --dark-surface-raised: #1c1c1c;
+  --dark-border: #333;
+  --dark-text: #e8efe9;
+  --dark-text-secondary: #c2cdc5;
+  --dark-text-muted: #a1afa5;
+  --dark-text-subtle: #8b9a90;
+}
+
+:root[data-color-mode="dark"] .information-modal,
+:root[data-color-mode="dark"] .information-page,
+:root[data-color-mode="dark"] .information-header {
+  background: var(--dark-page);
+}
+
+:root[data-color-mode="dark"] .settings-menu,
+:root[data-color-mode="dark"] .search-panel,
+:root[data-color-mode="dark"] .card,
+:root[data-color-mode="dark"] .search-order-tooltip,
+:root[data-color-mode="dark"] .completion-chart::before,
+:root[data-color-mode="dark"] .social-links a {
+  background: var(--dark-surface);
+}
+
+:root[data-color-mode="dark"] .settings-menu,
+:root[data-color-mode="dark"] .card,
+:root[data-color-mode="dark"] .icon-button,
+:root[data-color-mode="dark"] .search-modal,
+:root[data-color-mode="dark"] .notification-filter select,
+:root[data-color-mode="dark"] .statistics-task-filter select,
+:root[data-color-mode="dark"] .search-form input,
+:root[data-color-mode="dark"] .form-row input,
+:root[data-color-mode="dark"] .theme-option,
+:root[data-color-mode="dark"] .search-result,
+:root[data-color-mode="dark"] .notification-item,
+:root[data-color-mode="dark"] .task-item,
+:root[data-color-mode="dark"] .pagination-button,
+:root[data-color-mode="dark"] .information-shortcut,
+:root[data-color-mode="dark"] .information-card,
+:root[data-color-mode="dark"] .search-order-tooltip {
+  border-color: var(--dark-border);
+}
+
+:root[data-color-mode="dark"] .icon-button,
+:root[data-color-mode="dark"] .search-form input,
+:root[data-color-mode="dark"] .form-row input,
+:root[data-color-mode="dark"] .theme-option,
+:root[data-color-mode="dark"] .search-result,
+:root[data-color-mode="dark"] .notification-item,
+:root[data-color-mode="dark"] .pagination-button,
+:root[data-color-mode="dark"] .information-shortcut,
+:root[data-color-mode="dark"] .information-card,
+:root[data-color-mode="dark"] .completed-task-item {
+  background: var(--dark-surface-raised);
+}
+
+:root[data-color-mode="dark"] .notification-filter select,
+:root[data-color-mode="dark"] .statistics-task-filter select {
+  background-color: var(--dark-surface-raised);
+}
+
+:root[data-color-mode="dark"] .settings-menu-item,
+:root[data-color-mode="dark"] .search-order-tooltip,
+:root[data-color-mode="dark"] .notification-filter,
+:root[data-color-mode="dark"] .notification-item-heading,
+:root[data-color-mode="dark"] .notification-toast-content,
+:root[data-color-mode="dark"] .statistics-count,
+:root[data-color-mode="dark"] .completed-task-item,
+:root[data-color-mode="dark"] .pagination-button,
+:root[data-color-mode="dark"] .search-result,
+:root[data-color-mode="dark"] .theme-option,
+:root[data-color-mode="dark"] .information-heading h2,
+:root[data-color-mode="dark"] .information-section-heading h3,
+:root[data-color-mode="dark"] .information-card h3,
+:root[data-color-mode="dark"] .information-card h4,
+:root[data-color-mode="dark"] .task-item,
+:root[data-color-mode="dark"] .task-form label,
+:root[data-color-mode="dark"] .section-heading h2 {
+  color: var(--dark-text);
+}
+
+:root[data-color-mode="dark"] .subtitle,
+:root[data-color-mode="dark"] .notification-item p,
+:root[data-color-mode="dark"] .notifications-empty-message,
+:root[data-color-mode="dark"] .notification-toast-content,
+:root[data-color-mode="dark"] .statistics-count,
+:root[data-color-mode="dark"] .statistics-summary .statistics-count,
+:root[data-color-mode="dark"] .information-intro,
+:root[data-color-mode="dark"] .information-shortcut > span:last-child > span,
+:root[data-color-mode="dark"] .information-card p,
+:root[data-color-mode="dark"] .empty-message,
+:root[data-color-mode="dark"] .completed-empty-message,
+:root[data-color-mode="dark"] .completed-pagination,
+:root[data-color-mode="dark"] .task-pagination,
+:root[data-color-mode="dark"] .filter-control,
+:root[data-color-mode="dark"] .search-hint,
+:root[data-color-mode="dark"] .search-empty-message,
+:root[data-color-mode="dark"] .themes-description,
+:root[data-color-mode="dark"] .premium-note,
+:root[data-color-mode="dark"] .site-footer,
+:root[data-color-mode="dark"] .site-footer-model,
+:root[data-color-mode="dark"] .notification-item-heading time,
+:root[data-color-mode="dark"] .search-result-status,
+:root[data-color-mode="dark"] .task-item.is-completed .task-text,
+:root[data-color-mode="dark"] .settings-mode-status {
+  color: var(--dark-text-muted);
+}
+
+:root[data-color-mode="dark"] .settings-menu-item:hover,
+:root[data-color-mode="dark"] .settings-menu-item:focus-visible,
+:root[data-color-mode="dark"] .icon-button:hover,
+:root[data-color-mode="dark"] .theme-option:hover,
+:root[data-color-mode="dark"] .search-result:hover,
+:root[data-color-mode="dark"] .information-shortcut:hover,
+:root[data-color-mode="dark"] .pagination-button:hover:not(:disabled),
+:root[data-color-mode="dark"] .notification-filter select:hover,
+:root[data-color-mode="dark"] .statistics-task-filter select:hover {
+  background: var(--accent-soft);
+}
+
+:root[data-color-mode="dark"] .information-shortcut strong,
+:root[data-color-mode="dark"] .information-thanks,
+:root[data-color-mode="dark"] .theme-name,
+:root[data-color-mode="dark"] .completed-task-list.is-pending .completed-task-item {
+  color: var(--accent-text);
+}
+
+:root[data-color-mode="dark"] .notification-filter select,
+:root[data-color-mode="dark"] .statistics-task-filter select,
+:root[data-color-mode="dark"] .search-form input,
+:root[data-color-mode="dark"] .form-row input,
+:root[data-color-mode="dark"] .search-result,
+:root[data-color-mode="dark"] .search-order-tooltip {
+  color: var(--dark-text-secondary);
+}
+
+:root[data-color-mode="dark"] .notification-filter select option,
+:root[data-color-mode="dark"] .statistics-task-filter select option {
+  background: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+:root[data-color-mode="dark"] .search-modal::backdrop {
+  background: rgb(0 0 0 / 58%);
+}
+
+:root[data-color-mode="dark"] .notification-badge {
+  border-color: var(--dark-surface);
+}
+
+:root[data-color-mode="dark"] .notification-item.notification-achievement {
+  border-left-color: #d4ae5e;
+  background: #30291b;
+}
+
+:root[data-color-mode="dark"] .notification-item.notification-task-deleted {
+  border-left-color: #89978d;
+}
+
+:root[data-color-mode="dark"] .completion-chart::before {
+  background: var(--dark-surface);
+}
+
+:root[data-color-mode="dark"] .completion-chart.is-pending {
+  --chart-track: #50302e;
+}
+
+:root[data-color-mode="dark"] .completion-chart-value {
+  color: var(--dark-text);
+}
+
+:root[data-color-mode="dark"] .completion-chart-label {
+  color: var(--dark-text-muted);
+}
+
+:root[data-color-mode="dark"] .completion-mood.is-negative {
+  background: #3a2826;
+  color: #e28a82;
+}
+
+:root[data-color-mode="dark"] .completed-task-item {
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--dark-text-secondary);
+}
+
+:root[data-color-mode="dark"] .completed-task-list.is-pending .completed-task-item {
+  border-color: #68403e;
+  background: #352624;
+  color: #e0a09b;
+}
+
+:root[data-color-mode="dark"] .theme-status.is-premium {
+  background: #3b321d;
+  color: #e1c77e;
+}
+
+:root[data-color-mode="dark"] .search-order-tooltip,
+:root[data-color-mode="dark"] .statistics-summary .statistics-count,
+:root[data-color-mode="dark"] .statistics-panel .completed-empty-message {
+  background: var(--dark-surface);
+}
+
+:root[data-color-mode="dark"] .statistics-summary {
+  border-color: var(--dark-border);
+}
+
+:root[data-color-mode="dark"] .settings-menu {
+  box-shadow: 0 16px 42px rgb(0 0 0 / 36%);
+}
+
+:root[data-color-mode="dark"] .notification-toast {
+  border-color: var(--dark-border);
+  background: var(--dark-surface-raised);
+}
+
+:root[data-color-mode="dark"] .information-card {
+  background: color-mix(in srgb, var(--dark-surface-raised), var(--accent) 5%);
+}
+
+:root[data-color-mode="dark"] .search-form input::placeholder,
+:root[data-color-mode="dark"] .form-row input::placeholder {
+  color: var(--dark-text-subtle);
 }
 
 [hidden] {

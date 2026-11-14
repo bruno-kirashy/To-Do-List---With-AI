@@ -48,6 +48,10 @@ const themesModal = document.querySelector("#themes-modal");
 const themeOptions = document.querySelector("#theme-options");
 const settingsToggle = document.querySelector("#toggle-settings");
 const settingsMenu = document.querySelector("#settings-menu");
+const darkModeToggle = document.querySelector("#toggle-dark-mode");
+const darkModeStatus = document.querySelector("#dark-mode-status");
+const informationDarkModeToggle = document.querySelector("#information-dark-mode");
+const informationDarkModeStatus = document.querySelector("#information-dark-mode-status");
 const informationModal = document.querySelector("#information-modal");
 const closeInformationButton = document.querySelector("#close-information");
 const currentYear = document.querySelector("#current-year");
@@ -69,6 +73,7 @@ let toastHideTimer = null;
 let statisticsTransitionTimer = null;
 let completionAnimationFrame = null;
 let selectedTheme = "forest";
+let isDarkMode = false;
 
 // Limites de paginação e marcos usados nas telas de tarefas e estatísticas.
 const completedTasksPageSize = 5;
@@ -274,9 +279,24 @@ const applyTheme = (themeId) => {
       /[A-Z]/g,
       (letter) => `-${letter.toLowerCase()}`,
     );
-    document.documentElement.style.setProperty(`--${cssVariable}`, value);
+    document.documentElement.style.setProperty(`--theme-${cssVariable}`, value);
   });
   renderThemeOptions();
+};
+
+const setDarkMode = (enabled) => {
+  isDarkMode = enabled;
+  document.documentElement.dataset.colorMode = enabled ? "dark" : "light";
+  darkModeToggle.setAttribute("aria-pressed", String(enabled));
+  informationDarkModeToggle.setAttribute("aria-pressed", String(enabled));
+  darkModeStatus.textContent = enabled ? "Ativado" : "Desativado";
+  informationDarkModeStatus.textContent = enabled
+    ? "Ativado. Toque para desativar."
+    : "Desativado. Toque para ativar.";
+};
+
+const toggleDarkMode = () => {
+  setDarkMode(!isDarkMode);
 };
 
 const openThemesModal = () => {
@@ -313,6 +333,10 @@ const handleSettingsMenuClick = (event) => {
   if (!actionButton) return;
 
   setSettingsMenuOpen(false);
+  if (actionButton.dataset.settingsAction === "dark-mode") {
+    toggleDarkMode();
+    return;
+  }
   if (actionButton.dataset.settingsAction === "themes") openThemesModal();
   if (actionButton.dataset.settingsAction === "statistics") openStatisticsModal();
   if (actionButton.dataset.settingsAction === "information") openInformationModal();
@@ -393,6 +417,9 @@ const handleInformationModalClick = (event) => {
       break;
     case "themes":
       openThemesModal();
+      break;
+    case "dark-mode":
+      toggleDarkMode();
       break;
     case "add-task":
       taskInput.focus();
@@ -1072,4 +1099,5 @@ informationModal.addEventListener("click", handleInformationModalClick);
 
 // Completa o rodapé e desenha as opções iniciais de tema ao carregar o script.
 currentYear.textContent = String(new Date().getFullYear());
+setDarkMode(isDarkMode);
 renderThemeOptions();
