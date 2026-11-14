@@ -73,7 +73,7 @@ let toastHideTimer = null;
 let statisticsTransitionTimer = null;
 let completionAnimationFrame = null;
 let selectedTheme = "forest";
-let isDarkMode = false;
+let isDarkMode = true;
 
 // Limites de paginação e marcos usados nas telas de tarefas e estatísticas.
 const completedTasksPageSize = 5;

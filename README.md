@@ -42,7 +42,7 @@ Além da funcionalidade principal de gerenciamento de tarefas, o projeto inclui 
 - Visualizar progresso geral da rotina
 - Receber notificações sobre conquistas e exclusões
 - Alternar entre temas visuais
-- Ativar o modo escuro sem perder a paleta de cores selecionada
+- Iniciar no modo escuro e alternar a aparência sem perder a paleta selecionada
 - Navegar com uma interface moderna e intuitiva
 
 ## 🧱 Estrutura do projeto
